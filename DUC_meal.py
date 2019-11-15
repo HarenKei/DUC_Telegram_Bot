@@ -24,10 +24,24 @@ for i in range(5):
         if j == 0:
             currentCorner = content[1]
             td_meal = content[i + 2]
+
+            corner1_meal=currentCorner.text + ':' + td_meal.text.strip()
+            cnr1_db=open('/Users/harenkei/PycharmProjects/DUC_bot/cnr1_meal','w')
+            cnr1_db.write(corner1_meal)
         else:
             currentCorner = content[0]
             td_meal = content[i + 1]
+
+
         print(currentCorner.text, ":", td_meal.text.strip())
-        meal_data = open('/Users/harenkei/PycharmProjects/DUC_bot/meal_db','w')
+    meal = currentCorner.text + ":" + td_meal.text.strip()
+
+
     # Make a Line-Breking when a day is ended
     print("")
+
+
+
+    str_meal = currentCorner.text + ":" + td_meal.text.strip()
+    meal_data = open('/Users/harenkei/PycharmProjects/DUC_bot/meal_db', 'w')
+    meal_data.write(str_meal)
