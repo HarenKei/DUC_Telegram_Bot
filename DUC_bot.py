@@ -1,19 +1,26 @@
-import telegram
-import requests
+from telegram.ext import Updater, MessageHandler, Filters  # import modules
 
-#api key : cba6316cc66b10b108bc4dda1c1cacf1
+token_file = open('/Users/harenkei/PycharmProjects/DUC_bot/token','r')
+my_token = token_file.read().rstrip('\n')
 
-url = 'http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=cba6316cc66b10b108bc4dda1c1cacf1'
+print('start telegram chat bot')
 
-data = requests.get(url).json()
 
-my_token = '825907431:AAH_3LTZ40DKGSJivCXKcSjAEErjtCcb2U8'
+# message reply function
+def get_message(bot, update):
+    update.message.reply_text("got text")
+    update.message.reply_text(update.message.text)
 
-bot = telegram.Bot(token = my_token)
 
-updates = bot.getUpdates()
+updater = Updater(my_token)
 
-for u in updates :
-    print(u.message)
+if "학식" in update.message.text:
+    db = open("", 'r')
+    context.bot.send_message(chat_id=update.effective_chat.id, text=db.read())
 
-print(data)
+
+message_handler = MessageHandler(Filters.text, get_message)
+updater.dispatcher.add_handler(message_handler)
+
+updater.start_polling(timeout=3, clean=True)
+updater.idle()
