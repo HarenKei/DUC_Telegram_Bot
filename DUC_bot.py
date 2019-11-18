@@ -14,10 +14,6 @@ def get_message(bot, update):
 
 updater = Updater(my_token)
 
-if "학식" in update.message.text:
-    db = open("", 'r')
-    context.bot.send_message(chat_id=update.effective_chat.id, text=db.read())
-
 
 message_handler = MessageHandler(Filters.text, get_message)
 updater.dispatcher.add_handler(message_handler)
